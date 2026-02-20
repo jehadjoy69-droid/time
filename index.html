@@ -3,123 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>রমজান মোবারক ১৪৪৭ - বাংলাদেশ</title>
+  <title>রমজানের সময় - বাংলাদেশ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@300;500;700&family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #f0f4f8;
+      background: linear-gradient(135deg, #0a001f, #1e003c, #000814);
+      color: #e0e0ff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      overflow-x: hidden;
     }
     h1 {
-      font-family: 'Amiri', serif;
-      font-size: 3.2rem;
-      margin: 20px 0 8px;
-      color: #e0c188;
-      text-shadow: 0 0 20px rgba(224,193,136,0.6);
-      letter-spacing: 1px;
+      font-size: 2.8rem;
+      margin: 20px 0 10px;
+      color: #ffd700;
+      text-shadow: 0 0 15px #ffd70088;
     }
     .subtitle {
       font-size: 1.2rem;
       opacity: 0.9;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
     .card {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(12px);
-      border-radius: 24px;
-      padding: 40px 30px;
+      background: rgba(20, 20, 60, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 35px 25px;
       width: 100%;
-      max-width: 500px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 0 30px rgba(224,193,136,0.08);
-      border: 1px solid rgba(224,193,136,0.15);
+      max-width: 460px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+      border: 1px solid #ffd70044;
       text-align: center;
-      transition: transform 0.3s ease;
     }
-    .card:hover { transform: translateY(-8px); }
     label {
       font-size: 1.2rem;
       display: block;
-      margin-bottom: 10px;
-      color: #e0c188;
+      margin-bottom: 12px;
+      color: #ffd700;
     }
     select {
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       font-size: 1.1rem;
-      background: rgba(30,41,59,0.8);
+      background: rgba(40,40,80,0.8);
       color: white;
-      border: 1px solid #e0c188;
-      border-radius: 12px;
-      margin: 20px 0 30px;
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      margin: 15px 0 25px;
       cursor: pointer;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0c188' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffd700' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 16px center;
+      background-position: right 14px center;
     }
-    select:focus { outline: none; box-shadow: 0 0 0 3px rgba(224,193,136,0.3); }
+    select:focus { outline: none; box-shadow: 0 0 0 3px #ffd70066; }
     .time-box {
-      background: rgba(30,41,59,0.5);
-      border-radius: 16px;
-      padding: 24px;
-      margin: 16px 0;
-      border: 1px solid rgba(224,193,136,0.2);
+      background: rgba(40,40,80,0.5);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 15px 0;
+      border: 1px solid #ffd70033;
     }
     .label {
-      font-size: 1.3rem;
-      color: #e0c188;
-      margin-bottom: 8px;
+      font-size: 1.4rem;
+      color: #ffd700;
+      margin-bottom: 6px;
       font-weight: 500;
     }
     .time {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 0 15px rgba(224,193,136,0.7);
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 12px #ffd700aa;
     }
     .date-info {
-      margin: 20px 0;
+      margin: 15px 0;
       font-size: 1.1rem;
       opacity: 0.9;
     }
-    .loading, .error {
+    .status {
       font-size: 1.1rem;
-      margin: 20px 0;
-      color: #e0c188;
+      margin: 15px 0;
+      color: #ffcc00;
     }
     footer {
-      margin-top: 40px;
-      font-size: 0.95rem;
+      margin-top: 35px;
+      font-size: 0.9rem;
       opacity: 0.8;
       text-align: center;
     }
-    @media (max-width: 500px) {
-      h1 { font-size: 2.6rem; }
-      .time { font-size: 2.5rem; }
-      .card { padding: 30px 20px; }
+    @media (max-width: 480px) {
+      h1 { font-size: 2.4rem; }
+      .time { font-size: 2.4rem; }
+      .card { padding: 25px 18px; }
     }
   </style>
 </head>
 <body>
 
-  <h1>رمضان مبارك ١٤٤٧</h1>
-  <p class="subtitle">সেহরি ও ইফতারের সময় - বাংলাদেশ আজ</p>
+  <h1>রমজানের সময়</h1>
+  <p class="subtitle">আজকের সেহরি ও ইফতার</p>
 
   <div class="card">
-    <label for="district">আপনার জেলা নির্বাচন করুন:</label>
+    <label for="district">জেলা নির্বাচন করুন</label>
     <select id="district">
-      <option value="">-- জেলা নির্বাচন করুন --</option>
+      <option value="">জেলা বেছে নিন</option>
       <optgroup label="বরিশাল বিভাগ">
         <option value="Barguna">বরগুনা</option>
         <option value="Barisal">বরিশাল</option>
@@ -202,18 +197,18 @@
 
     <div class="time-box">
       <div class="label">সেহরি শেষ</div>
-      <div id="sehri" class="time loading">—</div>
+      <div id="sehri" class="time">—</div>
     </div>
 
     <div class="time-box">
       <div class="label">ইফতার</div>
-      <div id="iftar" class="time loading">—</div>
+      <div id="iftar" class="time">—</div>
     </div>
 
-    <div id="status" class="error"></div>
+    <div id="status" class="status"></div>
   </div>
 
-  <footer>রমজান কারীম • সময় আনুমানিক — স্থানীয় মসজিদ থেকে নিশ্চিত করুন • CYBER ULLASH API দ্বারা চালিত</footer>
+  <footer>সময় আনুমানিক — স্থানীয় মসজিদে নিশ্চিত করুন</footer>
 
   <script>
     const districtSelect = document.getElementById('district');
@@ -222,7 +217,7 @@
     const dateEl = document.getElementById('todayDate');
     const statusEl = document.getElementById('status');
 
-    // আজকের তারিখ (বাংলা ফরম্যাট)
+    // আজকের তারিখ বাংলায়
     const today = new Date();
     const banglaMonths = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
     const banglaDays = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
@@ -238,18 +233,16 @@
         return;
       }
 
-      // কুষ্টিয়ার জন্য স্পেশাল হ্যান্ডল (API-তে Kushtia চায়)
-      if (district.toLowerCase().includes('কুষ্টিয়া') || district.toLowerCase().includes('kushtia') || district.toLowerCase().includes('kust')) {
+      // কুষ্টিয়া / ভুল স্পেলিং হ্যান্ডেল
+      if (district.toLowerCase().includes('কুষ্টিয়া') || district.toLowerCase().includes('kushtia') || district.toLowerCase().includes('kust') || district.toLowerCase().includes('kush')) {
         district = 'Kushtia';
       }
 
-      statusEl.textContent = 'সময় লোড হচ্ছে...';
-      sehriEl.classList.add('loading');
-      iftarEl.classList.add('loading');
-
+      statusEl.textContent = 'লোড হচ্ছে...';
+      
       fetch(`https://mahbub-ullash.cyberbot.top/api/ramadan?location=${encodeURIComponent(district)}`)
         .then(res => {
-          if (!res.ok) throw new Error('API সমস্যা');
+          if (!res.ok) throw new Error();
           return res.json();
         })
         .then(data => {
@@ -257,23 +250,16 @@
             sehriEl.textContent = data.today.sehri_end;
             iftarEl.textContent = data.today.iftar;
             statusEl.textContent = '';
-          } else if (data.error) {
-            statusEl.textContent = 'লোকেশন পাওয়া যায়নি - অন্য জেলা চেষ্টা করুন';
-            sehriEl.textContent = 'N/A';
-            iftarEl.textContent = 'N/A';
           } else {
-            throw new Error('ডেটা অবৈধ');
+            statusEl.textContent = 'এই জেলার তথ্য পাওয়া যায়নি';
+            sehriEl.textContent = '—';
+            iftarEl.textContent = '—';
           }
         })
-        .catch(err => {
-          console.error(err);
-          statusEl.textContent = 'এই জেলার সময় পাওয়া যায়নি। ইন্টারনেট চেক করুন বা অন্য জেলা বেছে নিন।';
-          sehriEl.textContent = 'N/A';
-          iftarEl.textContent = 'N/A';
-        })
-        .finally(() => {
-          sehriEl.classList.remove('loading');
-          iftarEl.classList.remove('loading');
+        .catch(() => {
+          statusEl.textContent = 'তথ্য লোড করতে সমস্যা হয়েছে - অন্য জেলা চেষ্টা করুন';
+          sehriEl.textContent = '—';
+          iftarEl.textContent = '—';
         });
     }
 
@@ -281,7 +267,7 @@
       fetchTimes(e.target.value);
     });
 
-    // ডিফল্ট কুষ্টিয়া সিলেক্ট করা (আপনার লোকেশন অনুসারে)
+    // ডিফল্ট কুষ্টিয়া (আপনার লোকেশন)
     districtSelect.value = 'Kushtia';
     fetchTimes('Kushtia');
   </script>
