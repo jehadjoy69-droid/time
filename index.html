@@ -8,102 +8,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
-      background: linear-gradient(135deg, #0a001f, #1e003c, #000814);
-      color: #e0e0ff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.8rem;
-      margin: 20px 0 10px;
-      color: #ffd700;
-      text-shadow: 0 0 15px #ffd70088;
-    }
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 25px;
-    }
-    .card {
-      background: rgba(20, 20, 60, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 35px 25px;
-      width: 100%;
-      max-width: 460px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.7);
-      border: 1px solid #ffd70044;
-      text-align: center;
-    }
-    label {
-      font-size: 1.2rem;
-      display: block;
-      margin-bottom: 12px;
-      color: #ffd700;
-    }
-    select {
-      width: 100%;
-      padding: 14px;
-      font-size: 1.1rem;
-      background: rgba(40,40,80,0.8);
-      color: white;
-      border: 1px solid #ffd700;
-      border-radius: 10px;
-      margin: 15px 0 25px;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffd700' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-    }
-    select:focus { outline: none; box-shadow: 0 0 0 3px #ffd70066; }
-    .time-box {
-      background: rgba(40,40,80,0.5);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 15px 0;
-      border: 1px solid #ffd70033;
-    }
-    .label {
-      font-size: 1.4rem;
-      color: #ffd700;
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-    .time {
-      font-size: 2.8rem;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 0 12px #ffd700aa;
-    }
-    .date-info {
-      margin: 15px 0;
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    .status {
-      font-size: 1.1rem;
-      margin: 15px 0;
-      color: #ffcc00;
-    }
-    footer {
-      margin-top: 35px;
-      font-size: 0.9rem;
-      opacity: 0.8;
-      text-align: center;
-    }
-    @media (max-width: 480px) {
-      h1 { font-size: 2.4rem; }
-      .time { font-size: 2.4rem; }
-      .card { padding: 25px 18px; }
-    }
+    body { font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif; background: linear-gradient(135deg, #0a001f, #1e003c, #000814); color: #e0e0ff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+    h1 { font-size: 2.8rem; margin: 20px 0 10px; color: #ffd700; text-shadow: 0 0 15px #ffd70088; }
+    .subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 25px; }
+    .card { background: rgba(20, 20, 60, 0.7); backdrop-filter: blur(10px); border-radius: 20px; padding: 35px 25px; width: 100%; max-width: 480px; box-shadow: 0 15px 50px rgba(0,0,0,0.7); border: 1px solid #ffd70044; text-align: center; }
+    label { font-size: 1.2rem; display: block; margin-bottom: 12px; color: #ffd700; }
+    select, button { width: 100%; padding: 14px; font-size: 1.1rem; background: rgba(40,40,80,0.8); color: white; border: 1px solid #ffd700; border-radius: 10px; margin: 10px 0; cursor: pointer; }
+    button { background: #ffd700; color: #000; font-weight: bold; }
+    .time-box { background: rgba(40,40,80,0.5); border-radius: 14px; padding: 20px; margin: 15px 0; border: 1px solid #ffd70033; }
+    .label { font-size: 1.4rem; color: #ffd700; margin-bottom: 6px; font-weight: 500; }
+    .time { font-size: 2.8rem; font-weight: bold; color: white; text-shadow: 0 0 12px #ffd700aa; }
+    .date-info, .status { margin: 15px 0; font-size: 1.1rem; opacity: 0.9; color: #ffcc00; }
+    footer { margin-top: 35px; font-size: 0.9rem; opacity: 0.8; text-align: center; }
+    @media (max-width: 480px) { h1 { font-size: 2.4rem; } .time { font-size: 2.4rem; } .card { padding: 25px 18px; } }
   </style>
 </head>
 <body>
@@ -112,9 +29,11 @@
   <p class="subtitle">আজকের সেহরি ও ইফতার</p>
 
   <div class="card">
+    <button id="autoLocBtn">আমার লোকেশন অটো ডিটেক্ট করুন (GPS)</button>
     <label for="district">জেলা নির্বাচন করুন</label>
     <select id="district">
       <option value="">জেলা বেছে নিন</option>
+
       <optgroup label="বরিশাল বিভাগ">
         <option value="Barguna">বরগুনা</option>
         <option value="Barisal">বরিশাল</option>
@@ -123,36 +42,37 @@
         <option value="Patuakhali">পটুয়াখালী</option>
         <option value="Pirojpur">পিরোজপুর</option>
       </optgroup>
+
       <optgroup label="চট্টগ্রাম বিভাগ">
         <option value="Bandarban">বান্দরবান</option>
+        <option value="Brahmanbaria">ব্রাহ্মণবাড়িয়া</option>
+        <option value="Chandpur">চাঁদপুর</option>
         <option value="Chattogram">চট্টগ্রাম</option>
-        <option value="Cumilla">কুমিল্লা</option>
         <option value="Cox's Bazar">কক্সবাজার</option>
+        <option value="Cumilla">কুমিল্লা</option>
         <option value="Feni">ফেনী</option>
         <option value="Khagrachhari">খাগড়াছড়ি</option>
         <option value="Lakshmipur">লক্ষ্মীপুর</option>
         <option value="Noakhali">নোয়াখালী</option>
         <option value="Rangamati">রাঙ্গামাটি</option>
       </optgroup>
+
       <optgroup label="ঢাকা বিভাগ">
         <option value="Dhaka">ঢাকা</option>
         <option value="Faridpur">ফরিদপুর</option>
         <option value="Gazipur">গাজীপুর</option>
         <option value="Gopalganj">গোপালগঞ্জ</option>
-        <option value="Jamalpur">জামালপুর</option>
         <option value="Kishoreganj">কিশোরগঞ্জ</option>
         <option value="Madaripur">মাদারীপুর</option>
         <option value="Manikganj">মানিকগঞ্জ</option>
         <option value="Munshiganj">মুন্সীগঞ্জ</option>
-        <option value="Mymensingh">ময়মনসিংহ</option>
         <option value="Narayanganj">নারায়ণগঞ্জ</option>
         <option value="Narsingdi">নরসিংদী</option>
-        <option value="Netrokona">নেত্রকোনা</option>
         <option value="Rajbari">রাজবাড়ী</option>
         <option value="Shariatpur">শরীয়তপুর</option>
-        <option value="Sherpur">শেরপুর</option>
         <option value="Tangail">টাঙ্গাইল</option>
       </optgroup>
+
       <optgroup label="খুলনা বিভাগ">
         <option value="Bagerhat">বাগেরহাট</option>
         <option value="Chuadanga">চুয়াডাঙ্গা</option>
@@ -165,16 +85,25 @@
         <option value="Narail">নড়াইল</option>
         <option value="Satkhira">সাতক্ষীরা</option>
       </optgroup>
+
+      <optgroup label="ময়মনসিংহ বিভাগ">
+        <option value="Jamalpur">জামালপুর</option>
+        <option value="Mymensingh">ময়মনসিংহ</option>
+        <option value="Netrokona">নেত্রকোনা</option>
+        <option value="Sherpur">শেরপুর</option>
+      </optgroup>
+
       <optgroup label="রাজশাহী বিভাগ">
         <option value="Bogura">বগুড়া</option>
+        <option value="Chapainawabganj">চাঁপাইনবাবগঞ্জ</option>
         <option value="Joypurhat">জয়পুরহাট</option>
         <option value="Naogaon">নওগাঁ</option>
         <option value="Natore">নাটোর</option>
-        <option value="Chapainawabganj">চাঁপাইনবাবগঞ্জ</option>
         <option value="Pabna">পাবনা</option>
         <option value="Rajshahi">রাজশাহী</option>
         <option value="Sirajganj">সিরাজগঞ্জ</option>
       </optgroup>
+
       <optgroup label="রংপুর বিভাগ">
         <option value="Dinajpur">দিনাজপুর</option>
         <option value="Gaibandha">গাইবান্ধা</option>
@@ -185,6 +114,7 @@
         <option value="Rangpur">রংপুর</option>
         <option value="Thakurgaon">ঠাকুরগাঁও</option>
       </optgroup>
+
       <optgroup label="সিলেট বিভাগ">
         <option value="Habiganj">হবিগঞ্জ</option>
         <option value="Maulvibazar">মৌলভীবাজার</option>
@@ -205,10 +135,10 @@
       <div id="iftar" class="time">—</div>
     </div>
 
-    <div id="status" class="status"></div>
+    <div id="status" class="status">অটো লোকেশন চেক হচ্ছে...</div>
   </div>
 
-  <footer>MAKE BY JEHAD JOY</footer>
+  <footer>সময় আনুমানিক — স্থানীয় মসজিদে নিশ্চিত করুন</footer>
 
   <script>
     const districtSelect = document.getElementById('district');
@@ -216,14 +146,13 @@
     const iftarEl = document.getElementById('iftar');
     const dateEl = document.getElementById('todayDate');
     const statusEl = document.getElementById('status');
+    const autoBtn = document.getElementById('autoLocBtn');
 
     // আজকের তারিখ বাংলায়
     const today = new Date();
     const banglaMonths = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
     const banglaDays = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
-    const dayName = banglaDays[today.getDay()];
-    const dateStr = today.getDate() + " " + banglaMonths[today.getMonth()] + ", " + today.getFullYear();
-    dateEl.textContent = dateStr + " • " + dayName;
+    dateEl.textContent = today.getDate() + " " + banglaMonths[today.getMonth()] + ", " + today.getFullYear() + " • " + banglaDays[today.getDay()];
 
     function fetchTimes(district) {
       if (!district) {
@@ -233,7 +162,7 @@
         return;
       }
 
-      // কুষ্টিয়া ফিক্স (API English name চায়)
+      // কুষ্টিয়া স্পেশাল ফিক্স
       district = district.trim();
       if (district.toLowerCase().includes('কুষ্টিয়া') || district.toLowerCase().includes('kushtia') || district.toLowerCase().includes('kust') || district.toLowerCase().includes('kush')) {
         district = 'Kushtia';
@@ -241,14 +170,9 @@
 
       statusEl.textContent = 'লোড হচ্ছে...';
 
-      // Netlify proxy path (CORS fix)
-      const apiUrl = `/api/ramadan?location=${encodeURIComponent(district)}`;
-
-      fetch(apiUrl)
+      fetch(`/api/ramadan?location=${encodeURIComponent(district)}`)
         .then(res => {
-          if (!res.ok) {
-            throw new Error(`সার্ভার সমস্যা: ${res.status}`);
-          }
+          if (!res.ok) throw new Error('সার্ভার সমস্যা');
           return res.json();
         })
         .then(data => {
@@ -256,23 +180,60 @@
             sehriEl.textContent = data.today.sehri_end;
             iftarEl.textContent = data.today.iftar;
             statusEl.textContent = '';
-          } else if (data.error) {
-            statusEl.textContent = 'জেলা পাওয়া যায়নি: ' + (data.error || 'অজানা ত্রুটি');
           } else {
-            statusEl.textContent = 'তথ্যের ফরম্যাট ঠিক নেই';
+            statusEl.textContent = 'এই জেলার তথ্য পাওয়া যায়নি';
           }
         })
         .catch(err => {
-          console.error('Fetch error:', err);
-          statusEl.textContent = 'লোডে সমস্যা: ' + err.message + ' — netlify.toml চেক করুন';
+          console.error(err);
+          statusEl.textContent = 'লোডে সমস্যা - ইন্টারনেট চেক করুন';
         });
     }
 
-    districtSelect.addEventListener('change', (e) => {
-      fetchTimes(e.target.value);
+    // Auto IP-based detection (no permission)
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.country_name !== 'Bangladesh') {
+          statusEl.textContent = 'বাংলাদেশের বাইরে থেকে অ্যাক্সেস করছেন';
+          return;
+        }
+        let detected = data.city || data.region || '';
+        if (detected.toLowerCase().includes('kushtia') || detected === 'Kushtia') detected = 'Kushtia';
+        if (detected) {
+          districtSelect.value = detected;
+          fetchTimes(detected);
+          statusEl.textContent = 'অটো ডিটেক্ট: ' + detected;
+        } else {
+          statusEl.textContent = 'অটো ডিটেক্ট করা যায়নি - জেলা বেছে নিন';
+        }
+      })
+      .catch(() => statusEl.textContent = 'IP থেকে লোকেশন পাওয়া যায়নি');
+
+    // GPS button (permission required)
+    autoBtn.addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+            .then(res => res.json())
+            .then(loc => {
+              let dist = loc.address.state_district || loc.address.city || loc.address.town || '';
+              dist = dist.replace(/ District| Division/gi, '').trim();
+              if (dist.toLowerCase().includes('kushtia')) dist = 'Kushtia';
+              districtSelect.value = dist;
+              fetchTimes(dist);
+              statusEl.textContent = 'GPS থেকে: ' + dist;
+            })
+            .catch(() => statusEl.textContent = 'রিভার্স লোকেশন পাওয়া যায়নি');
+        }, () => statusEl.textContent = 'লোকেশন অনুমতি দিন');
+      } else {
+        statusEl.textContent = 'ব্রাউজার GPS সাপোর্ট করে না';
+      }
     });
 
-    // ডিফল্ট: কুষ্টিয়া (আপনার লোকেশন)
+    districtSelect.addEventListener('change', e => fetchTimes(e.target.value));
+
+    // Default Kushtia (your location)
     districtSelect.value = 'Kushtia';
     fetchTimes('Kushtia');
   </script>
