@@ -13,12 +13,11 @@
     .subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 25px; }
     .card { background: rgba(20, 20, 60, 0.7); backdrop-filter: blur(10px); border-radius: 20px; padding: 35px 25px; width: 100%; max-width: 480px; box-shadow: 0 15px 50px rgba(0,0,0,0.7); border: 1px solid #ffd70044; text-align: center; }
     label { font-size: 1.2rem; display: block; margin-bottom: 12px; color: #ffd700; }
-    select, button { width: 100%; padding: 14px; font-size: 1.1rem; background: rgba(40,40,80,0.8); color: white; border: 1px solid #ffd700; border-radius: 10px; margin: 10px 0; cursor: pointer; }
-    button { background: #ffd700; color: #000; font-weight: bold; }
+    select { width: 100%; padding: 14px; font-size: 1.1rem; background: rgba(40,40,80,0.8); color: white; border: 1px solid #ffd700; border-radius: 10px; margin: 15px 0 25px; cursor: pointer; }
     .time-box { background: rgba(40,40,80,0.5); border-radius: 14px; padding: 20px; margin: 15px 0; border: 1px solid #ffd70033; }
     .label { font-size: 1.4rem; color: #ffd700; margin-bottom: 6px; font-weight: 500; }
     .time { font-size: 2.8rem; font-weight: bold; color: white; text-shadow: 0 0 12px #ffd700aa; }
-    .date-info, .status { margin: 15px 0; font-size: 1.1rem; opacity: 0.9; color: #ffcc00; }
+    .date-info, .status { margin: 15px 0; font-size: 1.1rem; color: #ffcc00; opacity: 0.9; }
     footer { margin-top: 35px; font-size: 0.9rem; opacity: 0.8; text-align: center; }
     @media (max-width: 480px) { h1 { font-size: 2.4rem; } .time { font-size: 2.4rem; } .card { padding: 25px 18px; } }
   </style>
@@ -29,7 +28,6 @@
   <p class="subtitle">আজকের সেহরি ও ইফতার</p>
 
   <div class="card">
-    <button id="autoLocBtn">আমার লোকেশন অটো ডিটেক্ট করুন (GPS)</button>
     <label for="district">জেলা নির্বাচন করুন</label>
     <select id="district">
       <option value="">জেলা বেছে নিন</option>
@@ -135,7 +133,7 @@
       <div id="iftar" class="time">—</div>
     </div>
 
-    <div id="status" class="status">অটো লোকেশন চেক হচ্ছে...</div>
+    <div id="status" class="status">লোকেশন চেক হচ্ছে...</div>
   </div>
 
   <footer>সময় আনুমানিক — স্থানীয় মসজিদে নিশ্চিত করুন</footer>
@@ -146,95 +144,79 @@
     const iftarEl = document.getElementById('iftar');
     const dateEl = document.getElementById('todayDate');
     const statusEl = document.getElementById('status');
-    const autoBtn = document.getElementById('autoLocBtn');
 
-    // আজকের তারিখ বাংলায়
+    // Date setup
     const today = new Date();
     const banglaMonths = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
     const banglaDays = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
     dateEl.textContent = today.getDate() + " " + banglaMonths[today.getMonth()] + ", " + today.getFullYear() + " • " + banglaDays[today.getDay()];
 
     function fetchTimes(district) {
-      if (!district) {
-        sehriEl.textContent = '—';
-        iftarEl.textContent = '—';
-        statusEl.textContent = 'জেলা নির্বাচন করুন';
-        return;
-      }
+      if (!district) return;
+      district = district.trim().replace(/ District/gi, '');
+      if (district.toLowerCase().includes('kusht') || district.toLowerCase().includes('কুষ্টিয়া')) district = 'Kushtia';
 
-      // কুষ্টিয়া স্পেশাল ফিক্স
-      district = district.trim();
-      if (district.toLowerCase().includes('কুষ্টিয়া') || district.toLowerCase().includes('kushtia') || district.toLowerCase().includes('kust') || district.toLowerCase().includes('kush')) {
-        district = 'Kushtia';
-      }
-
-      statusEl.textContent = 'লোড হচ্ছে...';
-
+      statusEl.textContent = 'সময় লোড হচ্ছে...';
       fetch(`/api/ramadan?location=${encodeURIComponent(district)}`)
-        .then(res => {
-          if (!res.ok) throw new Error('সার্ভার সমস্যা');
-          return res.json();
-        })
+        .then(res => res.ok ? res.json() : Promise.reject('API error'))
         .then(data => {
-          if (data.today && data.today.sehri_end && data.today.iftar) {
+          if (data.today?.sehri_end && data.today?.iftar) {
             sehriEl.textContent = data.today.sehri_end;
             iftarEl.textContent = data.today.iftar;
-            statusEl.textContent = '';
+            statusEl.textContent = 'লোকেশন: ' + (data.name || district);
           } else {
-            statusEl.textContent = 'এই জেলার তথ্য পাওয়া যায়নি';
+            statusEl.textContent = 'তথ্য পাওয়া যায়নি';
           }
         })
-        .catch(err => {
-          console.error(err);
-          statusEl.textContent = 'লোডে সমস্যা - ইন্টারনেট চেক করুন';
-        });
+        .catch(() => statusEl.textContent = 'লোডে সমস্যা হয়েছে');
     }
 
-    // Auto IP-based detection (no permission)
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        if (data.country_name !== 'Bangladesh') {
-          statusEl.textContent = 'বাংলাদেশের বাইরে থেকে অ্যাক্সেস করছেন';
-          return;
-        }
-        let detected = data.city || data.region || '';
-        if (detected.toLowerCase().includes('kushtia') || detected === 'Kushtia') detected = 'Kushtia';
-        if (detected) {
-          districtSelect.value = detected;
-          fetchTimes(detected);
-          statusEl.textContent = 'অটো ডিটেক্ট: ' + detected;
-        } else {
-          statusEl.textContent = 'অটো ডিটেক্ট করা যায়নি - জেলা বেছে নিন';
-        }
-      })
-      .catch(() => statusEl.textContent = 'IP থেকে লোকেশন পাওয়া যায়নি');
-
-    // GPS button (permission required)
-    autoBtn.addEventListener('click', () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+    // Auto geolocation on page load (prompt if not granted)
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&zoom=10`)
             .then(res => res.json())
             .then(loc => {
-              let dist = loc.address.state_district || loc.address.city || loc.address.town || '';
+              let dist = loc.address.state_district || loc.address.city || loc.address.town || loc.address.village || '';
               dist = dist.replace(/ District| Division/gi, '').trim();
               if (dist.toLowerCase().includes('kushtia')) dist = 'Kushtia';
               districtSelect.value = dist;
               fetchTimes(dist);
-              statusEl.textContent = 'GPS থেকে: ' + dist;
+              statusEl.textContent = 'অটো লোকেশন: ' + dist;
             })
-            .catch(() => statusEl.textContent = 'রিভার্স লোকেশন পাওয়া যায়নি');
-        }, () => statusEl.textContent = 'লোকেশন অনুমতি দিন');
-      } else {
-        statusEl.textContent = 'ব্রাউজার GPS সাপোর্ট করে না';
-      }
-    });
+            .catch(() => fallbackToIP());
+        },
+        err => {
+          statusEl.textContent = err.code === 1 ? 'লোকেশন অনুমতি দেননি' : 'লোকেশন পাওয়া যায়নি';
+          fallbackToIP();
+        },
+        { timeout: 10000, maximumAge: 60000 }  // 10s timeout, cache 1 min
+      );
+    } else {
+      fallbackToIP();
+    }
+
+    function fallbackToIP() {
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+          if (data.country_name === 'Bangladesh') {
+            let detected = data.city || data.region || '';
+            if (detected.toLowerCase().includes('kushtia')) detected = 'Kushtia';
+            if (detected) {
+              districtSelect.value = detected;
+              fetchTimes(detected);
+              statusEl.textContent = 'IP থেকে: ' + detected;
+            }
+          }
+        })
+        .catch(() => statusEl.textContent = 'লোকেশন ডিটেক্ট করা যায়নি - জেলা বেছে নিন');
+    }
 
     districtSelect.addEventListener('change', e => fetchTimes(e.target.value));
 
-    // Default Kushtia (your location)
-    districtSelect.value = 'Kushtia';
+    // Initial load with Kushtia fallback
     fetchTimes('Kushtia');
   </script>
 </body>
