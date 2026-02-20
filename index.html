@@ -229,20 +229,26 @@
       if (!district) {
         sehriEl.textContent = '—';
         iftarEl.textContent = '—';
-        statusEl.textContent = '';
+        statusEl.textContent = 'জেলা নির্বাচন করুন';
         return;
       }
 
-      // কুষ্টিয়া / ভুল স্পেলিং হ্যান্ডেল
+      // কুষ্টিয়া ফিক্স (API English name চায়)
+      district = district.trim();
       if (district.toLowerCase().includes('কুষ্টিয়া') || district.toLowerCase().includes('kushtia') || district.toLowerCase().includes('kust') || district.toLowerCase().includes('kush')) {
         district = 'Kushtia';
       }
 
       statusEl.textContent = 'লোড হচ্ছে...';
-      
-      fetch(`https://mahbub-ullash.cyberbot.top/api/ramadan?location=${encodeURIComponent(district)}`)
+
+      // Netlify proxy path (CORS fix)
+      const apiUrl = `/api/ramadan?location=${encodeURIComponent(district)}`;
+
+      fetch(apiUrl)
         .then(res => {
-          if (!res.ok) throw new Error();
+          if (!res.ok) {
+            throw new Error(`সার্ভার সমস্যা: ${res.status}`);
+          }
           return res.json();
         })
         .then(data => {
@@ -250,16 +256,15 @@
             sehriEl.textContent = data.today.sehri_end;
             iftarEl.textContent = data.today.iftar;
             statusEl.textContent = '';
+          } else if (data.error) {
+            statusEl.textContent = 'জেলা পাওয়া যায়নি: ' + (data.error || 'অজানা ত্রুটি');
           } else {
-            statusEl.textContent = 'এই জেলার তথ্য পাওয়া যায়নি';
-            sehriEl.textContent = '—';
-            iftarEl.textContent = '—';
+            statusEl.textContent = 'তথ্যের ফরম্যাট ঠিক নেই';
           }
         })
-        .catch(() => {
-          statusEl.textContent = 'তথ্য লোড করতে সমস্যা হয়েছে - অন্য জেলা চেষ্টা করুন';
-          sehriEl.textContent = '—';
-          iftarEl.textContent = '—';
+        .catch(err => {
+          console.error('Fetch error:', err);
+          statusEl.textContent = 'লোডে সমস্যা: ' + err.message + ' — netlify.toml চেক করুন';
         });
     }
 
@@ -267,7 +272,7 @@
       fetchTimes(e.target.value);
     });
 
-    // ডিফল্ট কুষ্টিয়া (আপনার লোকেশন)
+    // ডিফল্ট: কুষ্টিয়া (আপনার লোকেশন)
     districtSelect.value = 'Kushtia';
     fetchTimes('Kushtia');
   </script>
