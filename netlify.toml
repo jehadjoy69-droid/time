@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/ramadan/*"
+  to = "https://mahbub-ullash.cyberbot.top/api/ramadan/:splat"
+  status = 200
+  force = true
